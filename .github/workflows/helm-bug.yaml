@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  update:
+  bug:
     strategy:
       fail-fast: false
       matrix:
@@ -13,6 +13,6 @@ jobs:
     steps:
     - uses: azure/setup-helm@v3
       with:
-        version: ${{ matrix.version }}
-        
+        version: ${{ matrix.version }}        
+    - run: helm version
     - run: helm pull oci://ghcr.io/actions/actions-runner-controller-charts/gha-runner-scale-set --debug
